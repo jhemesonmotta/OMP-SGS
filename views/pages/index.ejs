@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Analisador - MS Vision API</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+	<script src="../../Scripts/perfil.js"></script>
+	
+    <div class="container-fluid">
+        <div id="loader" style="display: none;"></div>
+        <div class="row content" id="corpoInteiro">
+            <div class="col-md-3 col-sm-3 col-xs-12 sidenav">
+                <h4>Analyser</h4>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#section1">Home</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <h2>Descubra Oq o Google Pensa de Você</h2>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+					<form name="posta" method="post" target="_self">
+						<div class="form-group">
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<input type="text" class="form-control" name="urlperfil" id="urlperfil" value="https://www.google.com.br/search?biw=1600&bih=769&tbm=isch&sa=1&ei=L8ERW4DEJcqtwAScs7iQBg&q=jhemeson+silva+mota&oq=jhemeson+&gs_l=img.3.0.35i39k1l2j0i24k1.1407.2531.0.3232.9.9.0.0.0.0.326.1277.0j3j2j1.6.0....0...1c.1.64.img..3.6.1272...0j0i67k1.0.VoKhm7-ehow" />
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-12">
+								<input type="submit" class="btn btn-default" style="height: 40px;" value="ANALISAR">
+								<!-- <button onclick="caller()" class="btn btn-success">ANALISAR</button> -->
+							</div>
+						</div>
+					</form>
+                </div>
+				<br/>
+				<br/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
