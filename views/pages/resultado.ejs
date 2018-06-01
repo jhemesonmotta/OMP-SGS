@@ -21,28 +21,41 @@
                     <li class="active"><a href="#section1">Home</a></li>
                 </ul>
             </div>
-
+            <br><br>
             <div class="col-md-9 col-sm-9 col-xs-12">
-				<p id="listinha">
-					<% fotos.forEach(function(foto) { %>
-						<%=foto %>,
-					<% }); %>
-				</p>
-					
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                        <textarea id="responseTextArea" class="UIInput form-control" rows="14"></textarea>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+                    <textarea id="responseTextArea" class="UIInput form-control" rows="14"></textarea>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div id="imageDiv">
-                        <img id="sourceImage" class="img-responsive"/>
-                    </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="imageDiv">
+                                <img id="sourceImage" class="img-responsive"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="imageDiv">
+                                <img id="sourceImage2" class="img-responsive"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="imageDiv">
+                                <img id="sourceImage3" class="img-responsive"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="imageDiv">
+                                <img id="sourceImage4" class="img-responsive"/>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
 	</div>
-	
+	<p id="listinha" style="display: none">
+        <% fotos.forEach(function(foto) { %>
+            <%=foto %>,
+        <% }); %>
+    </p>
 	<script>
 		var lista = $("#listinha").html(); 
 		var listinha = lista.split(",");

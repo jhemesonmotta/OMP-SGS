@@ -4,13 +4,17 @@ var qtdFotos = 0;
 var i = 0;
 
 function caller(fotos){
+    fotos = fotos.slice(0, 4); // apenas pra diminuir a qtd;
     qtdFotos = fotos.length;
 
-    processImage(fotos[0]);
     document.querySelector("#sourceImage").src = fotos[0];
-    // for(var foto of fotos){
-    //      processImage(foto);
-    // }
+    document.querySelector("#sourceImage2").src = fotos[1];
+    document.querySelector("#sourceImage3").src = fotos[2];
+    document.querySelector("#sourceImage4").src = fotos[3];
+    
+    for(var foto of fotos){
+         processImage(foto);
+    }
 }
 
 function processImage(sourceImageUrl) {
@@ -50,13 +54,11 @@ function processImage(sourceImageUrl) {
         for(var temp of data.tags){
             tags.push(temp);
         }
-        // if(i == qtdFotos){
-            // fun��o que os agrupar� e retornar� as 5 tags mais recorrentes com a porcentagem de chances desta aparecer em fotos outras fotos desta "lista"
-                // ex.: futuras fotos desta pessoa
-            $("#responseTextArea").val(JSON.stringify(data, null, 2));
+        if(i == qtdFotos){
+            $("#responseTextArea").val(JSON.stringify(tags, null, 2));
             document.querySelector("#corpoInteiro").style.display = "block";
             document.querySelector("#loader").style.display = "none";
-        // }
+        }
     })
 
     .fail(function(jqXHR, textStatus, errorThrown) {
