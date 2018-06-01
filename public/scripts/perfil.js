@@ -11,7 +11,7 @@ function caller(fotos){
     document.querySelector("#sourceImage2").src = fotos[1];
     document.querySelector("#sourceImage3").src = fotos[2];
     document.querySelector("#sourceImage4").src = fotos[3];
-    
+
     for(var foto of fotos){
          processImage(foto);
     }
@@ -52,7 +52,16 @@ function processImage(sourceImageUrl) {
     .done(function(data) {
         i ++;
         for(var temp of data.tags){
-            tags.push(temp);
+            var tem = false;
+            for(var tag of tags){
+                if(temp.name == tag.name){
+                    tag.confidence = (tag.confidence + temp.confidence);
+                    tem = true;
+                }
+            }
+            if(!tem || tags.length == 0){
+                tags.push(temp);
+            }
         }
         if(i == qtdFotos){
             $("#responseTextArea").val(JSON.stringify(tags, null, 2));
