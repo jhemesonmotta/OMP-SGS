@@ -1,6 +1,10 @@
 var tags = [];
 var qtdFotos = 0;
 var i = 0;
+var chartData = [];
+var targetId = 'chart';
+var canvasWidth = 600;
+var canvasHeight = 450;
 
 function caller(fotos){
     fotos = fotos.slice(0, 20); // apenas pra diminuir a qtd;
@@ -68,7 +72,14 @@ function processImage(sourceImageUrl) {
 
             tags.sort(function(a,b) {return (a.confidence < b.confidence) ? 1 : ((b.confidence < a.confidence) ? -1 : 0);} );
             tags = tags.slice(0,5);
-            $("#responseTextArea").val(JSON.stringify(tags, null, 2));
+
+            for(var tag of tags){
+                tag.confidence = ((tag.confidence / qtdFotos) * 100).toFixed(2);
+                chartData.push({label: tag.name, value: tag.confidence});
+            }
+
+            var chart = new BarChart(targetId, canvasWidth, canvasHeight, chartData);
+
             document.querySelector("#corpoInteiro").style.display = "block";
             document.querySelector("#loader").style.display = "none";
         }
