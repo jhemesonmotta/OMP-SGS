@@ -1,5 +1,6 @@
 .img-responsive{
   width: 100%;
+  max-height: 100%;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content {height: 780px}
@@ -25,8 +26,6 @@ padding: 15px;
 }
 .row.content {height: auto;} 
 }
-
-
 
 #loader {
 position: absolute;

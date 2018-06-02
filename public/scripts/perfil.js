@@ -4,13 +4,15 @@ var qtdFotos = 0;
 var i = 0;
 
 function caller(fotos){
-    fotos = fotos.slice(0, 4); // apenas pra diminuir a qtd;
+    fotos = fotos.slice(0, 20); // apenas pra diminuir a qtd;
     qtdFotos = fotos.length;
 
     document.querySelector("#sourceImage").src = fotos[0];
     document.querySelector("#sourceImage2").src = fotos[1];
     document.querySelector("#sourceImage3").src = fotos[2];
     document.querySelector("#sourceImage4").src = fotos[3];
+    document.querySelector("#sourceImage5").src = fotos[4];
+    document.querySelector("#sourceImage6").src = fotos[5];
 
     for(var foto of fotos){
          processImage(foto);
