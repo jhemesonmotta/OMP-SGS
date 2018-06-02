@@ -1,4 +1,3 @@
-GlobalFlag = false;
 var tags = [];
 var qtdFotos = 0;
 var i = 0;
@@ -66,6 +65,9 @@ function processImage(sourceImageUrl) {
             }
         }
         if(i == qtdFotos){
+
+            tags.sort(function(a,b) {return (a.confidence < b.confidence) ? 1 : ((b.confidence < a.confidence) ? -1 : 0);} );
+            tags = tags.slice(0,5);
             $("#responseTextArea").val(JSON.stringify(tags, null, 2));
             document.querySelector("#corpoInteiro").style.display = "block";
             document.querySelector("#loader").style.display = "none";

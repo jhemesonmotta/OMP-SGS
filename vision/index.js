@@ -1,5 +1,7 @@
 var request = require("request");
 var cheerio = require("cheerio");
+var translate = require('translate');
+
 module.exports.getFotos = function(url, callback) {
   request(url, function(error, response, html) {
     if (!error && response.statusCode == 200) {
@@ -20,5 +22,4 @@ module.exports.getFotos = function(url, callback) {
       console.log("statusCode: " + response.statusCode);
     }
   });
-
 }
