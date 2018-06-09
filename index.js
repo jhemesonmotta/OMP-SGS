@@ -19,6 +19,14 @@ app.get('/', function(request, response) {
   response.render('pages/index')
 });
 
+app.get('/saiba-mais', function(request, response) {
+  response.render('pages/saibamais')
+});
+
+app.get('/sobre-nos', function(request, response) {
+  response.render('pages/sobrenos')
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

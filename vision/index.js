@@ -1,6 +1,5 @@
 var request = require("request");
 var cheerio = require("cheerio");
-var translate = require('translate');
 
 module.exports.getFotos = function(url, callback) {
   request(url, function(error, response, html) {
