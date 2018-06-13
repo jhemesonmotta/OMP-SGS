@@ -9,39 +9,44 @@
         <div class="row content" id="corpoInteiro">
             <% include ../partials/navbar.ejs %>
             <div class="col-md-9 col-sm-9 col-xs-12">
+                <section>
+                    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-align-justify">
+                        <img src="images/logo.jpg" alt="OMP-SGS" class="logo">
+                    </div>
+                </section>
                 <div class="clearfix"></div>
 				<div class="col-md-8 col-sm-6 col-xs-12">
-                    <div id="chart">This will be our bar chart</div>
+                    <div id="chart">Nosso gráfico</div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div id="imageDiv">
-                                <img id="sourceImage" class="img-responsive"/>
+                                <img id="sourceImage" class="img-responsive pointer" onclick="graficoImagem('sourceImage')"/>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div id="imageDiv">
-                                <img id="sourceImage2" class="img-responsive"/>
+                                <img id="sourceImage2" class="img-responsive pointer" onclick="graficoImagem('sourceImage2')"/>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div id="imageDiv">
-                                <img id="sourceImage3" class="img-responsive"/>
+                                <img id="sourceImage3" class="img-responsive pointer" onclick="graficoImagem('sourceImage3')"/>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div id="imageDiv">
-                                <img id="sourceImage4" class="img-responsive"/>
+                                <img id="sourceImage4" class="img-responsive pointer" onclick="graficoImagem('sourceImage4')"/>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div id="imageDiv">
-                                <img id="sourceImage5" class="img-responsive"/>
+                                <img id="sourceImage5" class="img-responsive pointer" onclick="graficoImagem('sourceImage5')"/>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div id="imageDiv">
-                                <img id="sourceImage6" class="img-responsive"/>
+                                <img id="sourceImage6" class="img-responsive pointer" onclick="graficoImagem('sourceImage6')"/>
                             </div>
                         </div>
                 </div>
@@ -54,7 +59,6 @@
         <% }); %>
     </p>
 
-    <script src="../../Scripts/bar.js"></script>
 	<script>
 		var lista = $("#listinha").html(); 
 		var listinha = lista.split(",");

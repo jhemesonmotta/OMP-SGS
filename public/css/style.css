@@ -3,7 +3,7 @@
   max-height: 100%;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-.row.content {height: 780px}
+.row.content {height: 767px}
   
 /* Set gray background color and 100% height */
 .sidenav {
@@ -91,3 +91,22 @@ to{ bottom:0; opacity:1 }
 .text-align-center{
   text-align: center;
 }
+
+.text-align-justify{
+  text-align: justify;
+}
+
+body{
+  background-color: black;
+}
+
+a, p, h1, h2, h3, h4, h5, h6{
+  color: #C59854;
+}
+
+.form-control, .btn-default{
+  background-color: #C59854;
+  color: black;
+}
+
+.pointer {cursor: pointer;}

@@ -6,7 +6,7 @@ google.charts.load('current', {'packages':['corechart']});
       
 
 function caller(fotos){
-    fotos = fotos.slice(0, 20); // apenas pra diminuir a qtd;
+    fotos = fotos.slice(0, 10); // apenas pra diminuir a qtd;
     qtdFotos = fotos.length;
 
     document.querySelector("#sourceImage").src = fotos[0];
@@ -19,6 +19,14 @@ function caller(fotos){
     for(var foto of fotos){
          processImage(foto);
     }
+}
+
+function graficoImagem(imageId){
+    var url = $('#' + imageId).attr('src');
+    tags = [];
+    qtdFotos = 1;
+    i = 0;
+    processImage(url);
 }
 
 function drawChart() {
