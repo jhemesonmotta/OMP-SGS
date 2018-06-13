@@ -109,4 +109,11 @@ a, p, h1, h2, h3, h4, h5, h6{
   color: black;
 }
 
-.pointer {cursor: pointer;}
+.pointer {
+  cursor: pointer;
+}
+
+.saiba-mais{
+  margin-top: 15px;
+  float: right;
+}
