@@ -1,26 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <title>Analisador - MS Vision API</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../../css/style.css">
+    <% include ../partials/head.ejs %>
 </head>
 <body>
-	<script src="../../Scripts/perfil.js"></script>
-	
     <div class="container-fluid">
         <div id="loader" style="display: none;"></div>
         <div class="row content" id="corpoInteiro">
-            <div class="col-md-3 col-sm-3 col-xs-12 sidenav">
-                <h4>Analyser</h4>
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#section1">Home</a></li>
-                </ul>
-            </div>
+            <% include ../partials/navbar.ejs %>
 
             <div class="col-md-9 col-sm-9 col-xs-12">
                 <h2>Descubra Oq o Google Pensa de Você</h2>
@@ -32,7 +19,6 @@
 							</div>
 							<div class="col-md-3 col-sm-3 col-xs-12">
 								<input type="submit" class="btn btn-default" style="height: 40px;" value="ANALISAR">
-								<!-- <button onclick="caller()" class="btn btn-success">ANALISAR</button> -->
 							</div>
 						</div>
 					</form>

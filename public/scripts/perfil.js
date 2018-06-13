@@ -1,10 +1,9 @@
 var tags = [];
 var qtdFotos = 0;
 var i = 0;
-var chartData = [];
-var targetId = 'chart';
-var canvasWidth = 600;
-var canvasHeight = 450;
+
+google.charts.load('current', {'packages':['corechart']});
+      
 
 function caller(fotos){
     fotos = fotos.slice(0, 20); // apenas pra diminuir a qtd;
@@ -22,12 +21,30 @@ function caller(fotos){
     }
 }
 
+function drawChart() {
+    var dados = new google.visualization.DataTable();
+    dados.addColumn('string', 'Tags');
+    dados.addColumn('number', 'Porcentagem');
+
+    for(var tag of tags){
+        var pct = ((tag.confidence / qtdFotos) * 100).toFixed(2);
+
+        dados.addRow(
+            [tag.name, Number(pct)]
+        );
+    }
+    
+    var options = {'title':''};
+    var chart = new google.visualization.BarChart(document.getElementById('chart'));
+    chart.draw(dados, options);
+}
+
 function processImage(sourceImageUrl) {
 
     document.querySelector("#corpoInteiro").style.display = "none";
     document.querySelector("#loader").style.display = "block";
 
-    var subscriptionKey = "4dfab9a68a1e4a4ba92d3fa91996c4b5";
+    var subscriptionKey = "e41a1dc7e72c43299f3419beb6f6c7c1";
     var uriBase ="https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/analyze";
 
     // Request parameters.
@@ -70,18 +87,15 @@ function processImage(sourceImageUrl) {
         }
         if(i == qtdFotos){
 
-            tags.sort(function(a,b) {return (a.confidence < b.confidence) ? 1 : ((b.confidence < a.confidence) ? -1 : 0);} );
-            tags = tags.slice(0,5);
-
-            for(var tag of tags){
-                tag.confidence = ((tag.confidence / qtdFotos) * 100).toFixed(2);
-                chartData.push({label: tag.name, value: tag.confidence});
-            }
-
-            var chart = new BarChart(targetId, canvasWidth, canvasHeight, chartData);
-
+            tags.sort(function(a,b) {
+                return (a.confidence < b.confidence) ? 1 : ((b.confidence < a.confidence) ? -1 : 0);
+            } );
+            tags = tags.slice(0,5);            
             document.querySelector("#corpoInteiro").style.display = "block";
             document.querySelector("#loader").style.display = "none";
+
+            google.charts.setOnLoadCallback(drawChart);
+            drawChart();
         }
     })
 
