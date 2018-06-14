@@ -1,40 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <% include ../partials/head.ejs %>
-</head>
-<body>
-    <div class="container-fluid">
-        <div id="loader" style="display: none;"></div>
-        <div class="row content" id="corpoInteiro">
-            <% include ../partials/navbar.ejs %>
 
-            <div class="col-md-9 col-sm-9 col-xs-12">
-                <section>
-                    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-align-justify">
-                        <img src="images/logo.jpg" alt="OMP-SGS" class="logo">
-                        <h4 class="text-align-center">O que a Microsoft Pensa Sobre o que o Google Sabe Sobre Você</h4>
-                        <p>Deselvolvida por quatro acadêmicos do curso de Ciência da Computação CEULP/ULBRA no primeiro semestre de 2018 como um trabalho para a matéria de Multimídia e Hipermídia, a OMP-SGS é uma ferramenta que busca informar ao usuário curioso quais as "tags" mais relacionadas com suas fotos no Google. Utilizar a OMP-SGS é fácil e simples, para isto basta colar no campo abaixo a url de busca do seu nome no Google Images.</p>
-                    </div>
-                </section>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-align-justify">
-                        <form name="posta" method="post" target="_self">
-                            <div class="form-group">
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" class="form-control" name="urlperfil" id="urlperfil" value="https://www.google.com.br/search?biw=1600&bih=769&tbm=isch&sa=1&ei=L8ERW4DEJcqtwAScs7iQBg&q=jhemeson+silva+mota&oq=jhemeson+&gs_l=img.3.0.35i39k1l2j0i24k1.1407.2531.0.3232.9.9.0.0.0.0.326.1277.0j3j2j1.6.0....0...1c.1.64.img..3.6.1272...0j0i67k1.0.VoKhm7-ehow" />
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <input type="submit" class="btn btn-default" value="ANALISAR">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-				<br/>
-				<br/>
+<head>
+  <% include ../partials/head.ejs %>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div id="loader" style="display: none;"></div>
+    <div class="row content" id="corpoInteiro">
+      <% include ../partials/navbar.ejs %>
+
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <section>
+            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-align-justify" id="texto">
+              <img src="images/logo.jpg" alt="OMP-SGS" class="logo">
+              <h4 class="text-align-center">O que a Microsoft Pensa Sobre o que o Google Sabe Sobre Você</h4>
+              <p>Desenvolvida por quatro acadêmicos do curso de Ciência da Computação CEULP/ULBRA no primeiro semestre de 2018
+                como um trabalho para a matéria de Multimídia e Hipermídia, a OMP-SGS é uma ferramenta que busca informar
+                ao usuário curioso quais as "tags" mais relacionadas com suas fotos no Google. Utilizar a OMP-SGS é fácil
+                e simples, para isto basta colar no campo abaixo a url de busca do seu nome no Google Images.</p>
             </div>
+          </section>
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-align-justify">
+              <form name="posta" id="formUrl" method="post" target="_self">
+                <div class="form-group">
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                    <input type="hidden" type="text" class="form-control" name="urlperfil" id="urlperfil" value="" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-align-justify">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <a class="btn btn-default" id="logar">Logar com o Facebook</a>
+              <a class="btn btn-default" id="resultFace">Ver resultado</a>
+            </div>
+          </div>
+          <br/>
+          <br/>
         </div>
     </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script>
+
+    var config = {
+      "apiKey": "AIzaSyBhSaOhp-j5XWsJDYdn9wHGoRMo__smu7U",
+      "authDomain": "analisador-imagens.firebaseapp.com",
+      "databaseURL": "",
+      "projectId": "",
+      "storageBucket": ""
+    }
+    firebase.initializeApp(config);
+
+  </script>
+  <script>
+    $("#logar").on('click', logar);
+    $("#resultFace").on('click', getResult);
+
+    setInterval(watchLogin, 100);
+
+
+    function watchLogin() {
+      var logadoComo = document.getElementById('logadoComo');
+      if (sessionStorage.getItem('nomeUser') && !logadoComo) {
+        var $p = $("<p>");
+        $p.attr("id", "logadoComo");
+        $p.html("************************ Logado como " + sessionStorage.getItem('nomeUser') + ". ************************");
+        $("#texto").append($p);
+        document.getElementById("logar").style.display = "none";
+        document.getElementById("resultFace").style.display = "";
+      } else if (!logadoComo) {
+        document.getElementById("logar").style.display = "";
+        document.getElementById("resultFace").style.display = "none";
+
+        firebase.auth().getRedirectResult().then(function (result) {
+          var user = result.user;
+          if (user)
+            sessionStorage.setItem('nomeUser', user.displayName);
+        });
+      }
+    }
+
+    function logar() {
+      var provider = new firebase.auth.FacebookAuthProvider();
+
+      firebase.auth().signInWithRedirect(provider);
+      firebase.auth().getRedirectResult().then(function (result) {
+        if (result.credential) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var token = result.credential.accessToken;
+          // ...
+        }
+        // The signed-in user info.
+        var user = result.user;
+        if (user)
+        sessionStorage.setItem('nomeUser', user.displayName);
+        watchLogin();
+
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    }
+
+    function getResult() {
+      firebase.auth().getRedirectResult().then(function (result) {
+        if (result.credential) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var token = result.credential.accessToken;
+          // ...
+        }
+        // The signed-in user info.
+        var user = result.user;
+        localStorage.setItem('usuario', user);
+        redirectToResultados(user.displayName);
+
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    }
+
+    function redirectToResultados(nome) {
+      url = 'https://www.google.com.br/search?biw=1600&bih=769&tbm=isch&sa=1&ei=L8ERW4DEJcqtwAScs7iQBg&q=' + nome + '&gs_l=img.3.0.35i39k1l2j0i24k1.1407.2531.0.3232.9.9.0.0.0.0.326.1277.0j3j2j1.6.0....0...1c.1.64.img..3.6.1272...0j0i67k1.0.VoKhm7-ehow';
+      $("#urlperfil").val(url);
+      $("#formUrl").submit();
+    }
+
+  </script>
 </body>
+
 </html>
